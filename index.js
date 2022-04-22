@@ -4,7 +4,34 @@ const chromedriver = require("chromedriver");
 const X2JS = require('x2js');
 const fs = require('fs');
 const vkbeautify = require('vkbeautify');
+var xml = require('xml');
+var path = require('path');
 const { Builder, By, Key, until } = require("selenium-webdriver");
+let express = require('express');
+let app = express();
+let port = process.env.PORT || 3000;
+
+app.get('/', async (request, response) => {
+
+  console.log(`URL: ${request.url}`);
+  response.send('Hello, Server!');
+});
+app.get('/crawlData', async (request, response) => {
+  await done()
+  convertJsonXML();
+  return response.send({ message: "crawl data success" })
+});
+app.get("/downloadFile", (request, response) => {
+  var filePath = path.join(__dirname, 'tmp.xml');
+  var fileStream = fs.createReadStream(filePath);
+  fileStream.on('open', () => {
+    response.attachment('tmp.xml');
+    fileStream.pipe(response);
+  });
+})
+app.listen(port);
+
+console.log('RESTful API server started on: ' + port);
 function convertJsonXML() {
   fs.readFile('data.json', (err, data) => {
     if (err) throw err;
@@ -15,7 +42,6 @@ function convertJsonXML() {
     console.log(dep);
     // console.log(listData);
     fs.writeFileSync('tmp.xml', dep);
-    return;
   });
 }
 async function getAllCategory() {
@@ -101,7 +127,8 @@ async function done() {
     listAnimal[i].idCategory = listCategory[idRamdom].id;
   }
   fs.writeFileSync('data.json', JSON.stringify({ animals: { animal: listAnimal }, categories: { category: listCategory } }));
+
   console.log("done");
 }
 
-done();
+// done();

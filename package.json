@@ -1,0 +1,20 @@
+{
+  "name": "crawlanimal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.15",
+    "puppeteer": "^13.6.0",
+    "selenium-webdriver": "^4.1.1"
+  },
+  "devDependencies": {
+    "chromedriver": "^100.0.0"
+  }
+}

@@ -12,7 +12,9 @@
   "dependencies": {
     "nodemon": "^2.0.15",
     "puppeteer": "^13.6.0",
-    "selenium-webdriver": "^4.1.1"
+    "selenium-webdriver": "^4.1.1",
+    "vkbeautify": "^0.99.3",
+    "x2js": "^3.4.3"
   },
   "devDependencies": {
     "chromedriver": "^100.0.0"
